@@ -1,3 +1,9 @@
+// !Додаємо для виведення
+const express = require('express')
+var app = express();
+var path = require('path');
+app.engine('ejs', require('ejs').__express);
+
 const Order = require("../model/orders.model");
 // на вході кожного методу буде запит, записаний у req. 
 // на виході результат, отриманий від моделі, інфа про помилки
@@ -9,7 +15,10 @@ exports.findAll = function (req, res){
         console.log("controller");
         if (err)  
              res.send(err);
-        res.send(orders);
+        //res.send(orders);
+        //зєднання з файлом виведення
+        res.render('orders.ejs', {Order:orders});
+        
     });
 };
 
@@ -22,7 +31,9 @@ exports.create = function (req, res) {
     } else {
         Order.create(new_order, function(err, orders){
             if (err)  res.send(err);
-            res.json({error:false,message:"Order added successfully", data:orders });
+            //res.json({error:false,message:"Order added successfully", data:orders });
+            // перехід на таблицю
+             res.redirect('/api/orders');
         });
     }
 };
@@ -31,7 +42,9 @@ exports.create = function (req, res) {
 exports.findByID = function (req, res){
     Order.findByID(req.params.ID, function (err, orders){
         if (err)  res.send(err);
-            res.json(orders);
+            //res.json(orders);
+             // перехід на сторінку редагування
+             res.render('orders_edit.ejs', {Order:orders});
     });
 };
 
@@ -42,7 +55,9 @@ exports.update = function (req, res){
     } else {
         Order.update (req.params.ID, new Order(req.body),function(err, orders){
             if (err)  res.send(err);
-            res.json({error:false,message:"Order updated successfully"});
+            //res.json({error:false,message:"Order updated successfully"});
+            // перехід на таблицю
+            res.redirect('/api/orders');
         });
     }
 };
@@ -54,6 +69,8 @@ exports.delete = function (req, res){
         console.log("HI" + req.params.ID)
         if (err)  
             res.send(err);
-        res.json({error:false,message:"Order deleted successfully"});
+        //res.json({error:false,message:"Order deleted successfully"});
+        // перехід на таблицю
+        res.redirect('/api/orders');
     });
 };

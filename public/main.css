@@ -1,0 +1,34 @@
+
+body
+{
+    margin:auto;
+    margin:50px;
+    text-align: center;
+}
+a{
+    margin-left: 50px;
+
+}
+table
+{
+    text-align: center;
+    
+}
+table td 
+{
+    cursor: pointer;
+}
+.td
+{
+    background-color: white;
+}
+.main-menu
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+    height: 100px;
+    background-color:#c8e1fa;
+    
+}

@@ -11,8 +11,11 @@ router.post('/', ticketController.create);
 // пошук за ID
 router.get('/:ID', ticketController.findByID);
 //редагування 
-router.put('/:ID', ticketController.update);
+//router.put('/:ID', ticketController.update);
+router.post('/put/:ID', ticketController.update);
 // видалення за ID
-router.delete('/:ID', ticketController.delete);
+//router.delete('/:ID', ticketController.delete);
+router.get('/delete/:ID', ticketController.delete);
+
 // експорт за замовчуванням router
 module.exports = router;

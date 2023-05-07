@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="../public/main.css" rel="stylesheet" type="text/css">
+        <title>Квитки</title>
+    </head>
+
+    <body class="body">
+        <h1>Спиcок квитків</h1>
+        <div class="table-responsive">
+            <table class="table table-light table-striped table-hover table-sm">
+                <tr>
+                    <th>Номер квитка </th>
+                    <th>Номер замовлення</th>
+                    <th>Номер поїзда</th>
+                    <th>Номер вагону</th>
+                    <th>Номер місця</th>
+                    <th>Дата і час відправлення</th>
+                    <th>Дата і час прибуття</th>
+                    <th>Тип і дані документу</th>
+                    <th>Ціна</th>
+                </tr>
+                
+                <% for (var i = 0; i < Ticket.length; i++) { %>
+                    <tr>
+                      <td> <%= Ticket[i].ticket_ID %> </td>
+                      <td> <%= Ticket[i].order_ID %> </td>
+                      <td> <%= Ticket[i].train_ID %> </td>
+                      <td> <%= Ticket[i].carriage_num %> </td>
+                      <td> <%= Ticket[i].seat_num %> </td>
+                      <td> <%= Ticket[i].shipment_date %> </td>
+                      <td> <%= Ticket[i].arrival_date %> </td>
+                      <td> <%= Ticket[i].additional_document %> </td>
+                      <td> <%= Ticket[i].price %> </td>
+                  
+                      <td>
+                           <a class="btn btn-danger" href="/api/ticket/delete/<%= Ticket[i].ticket_ID%>">Видалити</a>
+                      </td>
+                      <td>
+                           <a class="btn btn-info" href="/api/ticket/<%= Ticket[i].ticket_ID%>">Редагувати</a>
+                      </td>
+                    </tr>
+                  <% } %>
+            </table>
+        </div>     
+        <h2 class="text-center">
+            Додати квиток
+        </h2>
+        <form action="ticket" method="POST" class="text-center">
+            <div class="mb-3">
+                <label class="form-label">
+                    Номер квитка
+                    <input type="number" placeholder="1005" class="form-control" id="ticket_ID" name="ticket_ID" min="1000">
+                </label class="form-label">
+                    <label>
+                    Номер замовлення
+                    <input type="number" class="form-control" placeholder="101" id="order_ID" name="order_ID" min="100">
+                </label>
+                <label class="form-label">
+                    Номер поїзда
+                    <input type="number" placeholder="976" class="form-control" id="train_ID" name="train_ID" min="1">
+                </label class="form-label">
+                    <label>
+                    Номер вагону
+                    <input type="number" class="form-control" placeholder="10" id="carriage_num" name="carriage_num" min="1">
+                </label>
+                <label class="form-label">
+                    Номер місця
+                    <input type="number" placeholder="56" class="form-control" id="seat_num" name="seat_num" min="1">
+                </label class="form-label">
+                    <label>
+                    Дата і час відправлення
+                    <input type="datetime" class="form-control" placeholder="2023-04-22 11:14:00" id="shipment_date" name="shipment_date">
+                </label>
+                <label class="form-label">
+                    Дата і час прибуття
+                    <input type="datetime" placeholder="2023-04-23 06:14:00" class="form-control" id="arrival_date" name="arrival_date">
+                </label class="form-label">
+                    <label>
+                    Тип і дані документу
+                    <input type="text" class="form-control" id="additional_document" name="additional_document">
+                </label>
+                <label class="form-label">
+                    Ціна
+                    <input type="number" placeholder="340.50" class="form-control" id="price" name="price" min="1">
+                </label class="form-label">
+            </div>
+            <a class="btn btn-outline-secondary" href="/"> На головну</a>
+            <button type="submit" class="btn btn-primary">Додати</button>
+        </form>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+            crossorigin="anonymous">
+        </script>
+    </body>
+</html>
+ 
+

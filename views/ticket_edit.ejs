@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+    <title>Редагування</title>
+</head>
+<body>
+    <h1 class="text-center">Редагувати квиток</h1>
+       <form action="" method="POST" class="text-center">       
+        <div class="mb-3">
+            <label class="form-label">
+                Номер квитка
+                <input type="number" placeholder="1005" class="form-control" id="ticket_ID" name="ticket_ID" min="1000" 
+                value= <%= Ticket[0].ticket_ID %> >
+            </label class="form-label">
+                <label>
+                Номер замовлення
+                <input type="number" class="form-control" placeholder="101" id="order_ID" name="order_ID" min="100"
+                value= <%= Ticket[0].order_ID %> >
+            </label>
+            <label class="form-label">
+                Номер поїзда
+                <input type="number" placeholder="976" class="form-control" id="train_ID" name="train_ID" min="1"
+                value= <%= Ticket[0].train_ID %>>
+            </label class="form-label">
+                <label>
+                Номер вагону
+                <input type="number" class="form-control" placeholder="10" id="carriage_num" name="carriage_num" min="1"
+                value= <%= Ticket[0].carriage_num %>>
+            </label>
+            <label class="form-label">
+                Номер місця
+                <input type="number" placeholder="56" class="form-control" id="seat_num" name="seat_num" min="1"
+                value= <%= Ticket[0].seat_num %>>
+            </label class="form-label">
+                <label>
+                Дата і час відправлення
+                <input type="datetime" class="form-control" placeholder="2023-04-22 11:14:00" id="shipment_date" name="shipment_date"
+                value= <%= Ticket[0].shipment_date %>>
+            </label>
+            <label class="form-label">
+                Дата і час прибуття
+                <input type="datetime" placeholder="2023-04-23 06:14:00" class="form-control" id="arrival_date" name="arrival_date"
+                value= <%= Ticket[0].arrival_date %>>
+            </label class="form-label">
+                <label>
+                Тип і дані документу
+                <input type="text" class="form-control" id="additional_document" name="additional_document"
+                value= <%= Ticket[0].additional_document %>>
+            </label>
+            <label class="form-label">
+                Ціна
+                <input type="number" placeholder="340.50" class="form-control" id="price" name="price" min="1"
+                value= <%= Ticket[0].price %>>
+        </label class="form-label">
+        </div>
+    <button type="submit" class="btn btn-primary" formaction="/api/ticket/put/<%= Ticket[0].ticket_ID%>">
+            Редагувати</button> 
+    </form>
+     <a class="btn btn-info" href="/api/ticket">Повернутися</a>
+</body>
+</html>

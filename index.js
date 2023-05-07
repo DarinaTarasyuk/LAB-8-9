@@ -23,8 +23,10 @@ app.set("view engine", "hbs")
 app.get ('/', (req,res) => {
     // 200 - успішний статус
     // json - тіло відповіді повідомлення
-    res.status(200).json("Сервер працює.")
+    //res.status(200).json("Сервер працює.")
+    res.render("index.ejs");
 })
+
 
 //require client routes
 const clientRoutes = require('./router/client.routes');
@@ -41,5 +43,9 @@ app.use('/api/ticket', ticketRoutes);
 //створення екземпляру застосунку
 //вхід, порт, callback фанкція, яка відпрацьовує лишу у випадку упішного запуску сервера
 app.listen(PORT, () => console.log("SERVER START!"))
+
+//!Щоб на сервері бачити усі рішення
+app.use(express.static("."));
+
 
 //npm run dev
